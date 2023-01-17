@@ -32,9 +32,10 @@ class PokemonList extends StatelessWidget {
 /// PokemonCard
 /// --------------------------------------------------------------------------------
 ///
-/// The PokemonCard is a stateless widget that displays a Pokemon image
-/// that will have a border and change the theme color to this Pokemon type's color
-/// when this widget is tapped.
+/// The PokemonCard is a stateless widget that requires [index] to call [selectPokemon]
+/// from [PokemonService] for displaying a Pokemon image
+/// that will have a border and change the theme colors to this Pokemon type's color
+/// when this widget was tapped.
 class PokemonCard extends StatelessWidget {
   const PokemonCard({
     Key? key,
@@ -44,11 +45,13 @@ class PokemonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// The Pokemon's id, where started with `1`.
     int pokemonId = index + 1;
     return Consumer<PokemonService>(builder: (_, pokemonService, __) {
       return GestureDetector(
           onTap: () => pokemonService.selectPokemon(pokemonId),
           child: Container(
+              // Checks that the currently selected Pokemon's id is equal to this Pokemon's id.
               decoration: pokemonService.currentPokemon == pokemonId
                   ? BoxDecoration(border: Border.all(width: 3))
                   : const BoxDecoration(),

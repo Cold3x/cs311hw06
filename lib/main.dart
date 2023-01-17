@@ -19,6 +19,7 @@ class MyPokemonApp extends StatelessWidget {
           builder: (_, pokemonService, __) {
             return MaterialApp(
                 title: 'Pokemon Demo',
+                // Changes theme color when tapped Pokemon.
                 theme: ThemeData(
                     appBarTheme:
                         AppBarTheme(backgroundColor: pokemonService.themeColor),
